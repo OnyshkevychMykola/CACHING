@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { getFromCache, setToCache } = require('./nodecache');
 const { getFromMemcached, setToMemcached } = require('./memcached');
 const { getFromRedis, setToRedis } = require('./redisCache');
@@ -7,6 +8,7 @@ const { fetchDataFromAPI, fetchProductFromAPI, fetchOrderFromAPI } = require('./
 const app = express();
 const PORT = 5000;
 app.use(express.json());
+app.use(cors());
 
 
 // Ендпоінт для отримання користувача (NodeCache)
