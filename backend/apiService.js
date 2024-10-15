@@ -1,3 +1,5 @@
+const { faker } = require('@faker-js/faker');
+
 /**
  * Імітація API-запиту для отримання даних користувача.
  * @param {string} userId - Ідентифікатор користувача.
@@ -8,8 +10,8 @@ function fetchDataFromAPI(userId) {
     setTimeout(() => {
       const userData = {
         id: userId,
-        name: 'John Doe',
-        email: 'johndoe@example.com',
+        name: faker.person.fullName(),
+        email: faker.internet.email(),
       };
       resolve(userData);
     }, 200);
@@ -26,8 +28,8 @@ function fetchProductFromAPI(productId) {
     setTimeout(() => {
       const productData = {
         id: productId,
-        name: 'Awesome Product',
-        price: 100,
+        name: faker.commerce.productName(),
+        price: parseFloat(faker.commerce.price()),
       };
       resolve(productData);
     }, 200);
@@ -44,8 +46,11 @@ function fetchOrderFromAPI(orderId) {
     setTimeout(() => {
       const orderData = {
         id: orderId,
-        items: ['Product 1', 'Product 2'],
-        total: 250,
+        items: [
+          faker.commerce.productName(),
+          faker.commerce.productName(),
+        ],
+        total: parseFloat(faker.commerce.price(100, 500)),
       };
       resolve(orderData);
     }, 300);
